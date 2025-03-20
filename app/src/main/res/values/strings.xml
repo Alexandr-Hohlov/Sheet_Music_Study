@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Sheet Music Study</string>
+    <string name="reveal_button_text">Reveal Answer</string>
     <string name="next_note_button_text">Next Note</string>
+    <string name="guess_note_button_text">Guess Note</string>
 </resources>
