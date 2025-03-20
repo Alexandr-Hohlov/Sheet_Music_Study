@@ -134,10 +134,18 @@ fun SheetMusicPage(modifier: Modifier = Modifier) {
 
             Button(onClick = {
                 if (userGuess.length == 2) {
+                    revealBtnText = R.string.next_note_button_text
+                    if (userGuess == noteName) {
+                        userGuess = "Correct! It was: " + noteName
+                    } else {
+                        userGuess = "Incorrect, it was: " + noteName
+                    }
+
+                } else if (userGuess.length > 2) {
+                    revealBtnText = R.string.reveal_button_text
                     val n = (0..10).random()
                     noteHeight = heights[n]
                     noteName = notes[n]
-                    revealBtnText = R.string.next_note_button_text
                     userGuess = ""
                 }
             }) {

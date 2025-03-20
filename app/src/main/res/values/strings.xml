@@ -3,4 +3,6 @@
     <string name="reveal_button_text">Reveal Answer</string>
     <string name="next_note_button_text">Next Note</string>
     <string name="guess_note_button_text">Guess Note</string>
+    <string name="answer_correct">"You got it right! It was: "</string>
+    <string name="answer_incorrect">"Incorrect, it was: "</string>
 </resources>
