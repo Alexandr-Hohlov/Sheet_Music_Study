@@ -1,7 +1,6 @@
 package com.example.sheetmusicstudy
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Note
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,14 +10,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,7 +31,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sheetmusicstudy.ui.theme.SheetMusicStudyTheme
 
 
 class MainActivity : ComponentActivity() {
@@ -158,7 +154,7 @@ fun SheetMusicPage(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun InputButton(modifier: Modifier = Modifier, fn: () -> Unit) {
+fun InputButton(fn: () -> Unit) {
     Button(onClick = fn) {
         Text(text = stringResource(R.string.guess_note_button_text), fontSize = 24.sp)
     }
@@ -188,7 +184,7 @@ fun NoteSelectionPopup(modifier: Modifier = Modifier, fn: (String) -> Unit) {
 
 
 @Composable
-fun NoteButton(modifier: Modifier = Modifier, note: String, fn: (String) -> Unit) {
+fun NoteButton(note: String, fn: (String) -> Unit) {
     Button(onClick = { fn(note) },
         modifier = Modifier.padding(0.dp)
     ) {
@@ -205,7 +201,7 @@ fun OctaveSelectionPopup(modifier: Modifier = Modifier, fn: (String) -> Unit) {
 }
 
 @Composable
-fun OctaveButton(modifier: Modifier = Modifier, octave: String, fn: (String) -> Unit) {
+fun OctaveButton(octave: String, fn: (String) -> Unit) {
     Button(onClick = { fn(octave) },
         modifier = Modifier.padding(24.dp)
     ) {
