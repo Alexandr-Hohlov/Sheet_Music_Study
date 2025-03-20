@@ -5,10 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -23,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,21 +38,26 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SheetMusicApp()
+            SheetMusicApp(modifier = Modifier)
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun SheetMusicApp() {
+fun SheetMusicApp(modifier: Modifier = Modifier) {
     SheetMusicPage(modifier = Modifier
         .fillMaxSize()
-        .wrapContentSize(Alignment.Center))
+        .wrapContentSize(Alignment.Center)
+        .background(Color(0xFF669ccc))
+    )
 }
 
 @Composable
 fun SheetMusicPage(modifier: Modifier = Modifier) {
+    /*
+    *  TODO: Find better solution to store these notes and heights.
+    */
     val notes = arrayOf("D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5", "G5")
     val heights = arrayOf(141, 149,  158,  166,  175,  183,  192,  200,  209,  217,  226)
 
@@ -63,7 +71,7 @@ fun SheetMusicPage(modifier: Modifier = Modifier) {
     // Maybe 9px difference?
 
     Column (
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box (modifier = Modifier.height(500.dp)) {
@@ -76,10 +84,17 @@ fun SheetMusicPage(modifier: Modifier = Modifier) {
                 contentDescription = "quarter note with upward stem",
                 modifier = Modifier
                     .scale(1.8f)
-                    .padding(start = 75.dp, bottom = noteHeight.dp)
+                    .padding(start = 70.dp, bottom = noteHeight.dp)
                     .align(Alignment.BottomStart)
             )
         }
+        Text(
+            text = noteName,
+            fontSize = 24.sp,
+            modifier = Modifier
+                .height(50.dp)
+
+        )
         Spacer(modifier = Modifier.height(50.dp))
 
         Button(onClick = {
@@ -87,7 +102,7 @@ fun SheetMusicPage(modifier: Modifier = Modifier) {
             noteHeight = heights[n]
             noteName = notes[n]
         }) {
-            Text(text = stringResource(R.string.reveal_button_text), fontSize = 24.sp)
+            Text(text = stringResource(R.string.next_note_button_text), fontSize = 24.sp)
         }
     }
 }
